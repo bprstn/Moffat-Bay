@@ -46,7 +46,7 @@ private String h(String s){
           <li><a href="index.html#dining">Dining</a></li>
           <li><a href="index.html#activities">Activities</a></li>
           <li><a href="index.html#contact">Contact</a></li>
-          <li><a class="btn btn-ghost auth" href="#signin">Sign In</a></li>
+          <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
           <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
         </ul>
       </nav>
@@ -125,7 +125,7 @@ private String h(String s){
           <div class="pad">
             <strong>Success:</strong> <span><%= h(successMsg) %></span>
             <div style="margin-top:10px">
-              <a class="btn btn-primary" href="#signin">Go to Sign In</a>
+              <a class="btn btn-primary" href="signin.jsp">Go to Sign In</a>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ private String h(String s){
 
               <div class="col-12" style="grid-column: span 12; margin-top:8px">
                 <button type="submit" class="btn btn-primary">Create Account</button>
-                <a href="#signin" class="btn btn-ghost" style="margin-left:8px">I already have an account</a>
+                <a href="signin.jsp" class="btn btn-ghost" style="margin-left:8px">I already have an account</a>
               </div>
             </div>
           </form>
@@ -200,9 +200,9 @@ private String h(String s){
           <p><a href="mailto:stay@moffatbay.com" style="color:var(--amber-glow)">stay@moffatbay.com</a> • (555) 555-0123</p>
         </div>
         <div class="col-6" style="display:flex; align-items:center; justify-content:flex-end; gap:10px">
-          <a class="btn btn-ghost" href="#signin" aria-label="Sign in">Sign In</a>
+          <a class="btn btn-ghost" href="signin.jsp" aria-label="Sign in">Sign In</a>
           <a class="btn btn-primary" href="registration.jsp" aria-label="Sign up">Sign Up</a>
-          <a class="btn btn-primary" href="#book" aria-label="Book now in footer">Book Now</a>
+          <a class="btn btn-primary" href="book.jsp" aria-label="Book now in footer">Book Now</a>
         </div>
       </div>
     </div>

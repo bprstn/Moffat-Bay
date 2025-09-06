@@ -68,10 +68,10 @@ nav a:hover, nav a:focus{opacity:.85; text-decoration:underline}
 /* ====== Hero ====== */
 .hero{
   position:relative; isolation:isolate;
-  background: #000 url("images/hero.png") center/80% no-repeat;
+  background:#000 url("images/hero.png") center/80% no-repeat;
   color:var(--cream-birch);
 }
-.hero::after{ /* vignette */
+.hero::after{
   content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
   z-index:0;
 }
@@ -101,14 +101,40 @@ section{padding:60px 0}
 .card img{width:100%; height:300px; object-fit:cover; display:block}
 .card .pad{padding:18px}
 
-/* 3-up grid */
+/* 3-up grid / column utilities */
 .col-4{grid-column: span 4}
 .col-6{grid-column: span 6}
+/* Full-width column for forms/blocks */
+.col-12{grid-column: span 12}
+
 .muted{color:#4b4b4b}
 .tag{
   display:inline-block; font-size:.8rem; font-weight:700; letter-spacing:.4px;
-  color:var(--deep-spruce); background: #e9efe9; padding:.35rem .6rem; border-radius:999px;
+  color:var(--deep-spruce); background:#e9efe9; padding:.35rem .6rem; border-radius:999px;
   border:1px solid #d3e1d8;
+}
+
+/* ====== Forms ====== */
+label{display:block; font-weight:600}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select, textarea{
+  display:block;          /* ensures width applies */
+  width:100%;
+  max-width:100%;         /* avoid shrink */
+  padding:.75rem;
+  border:1px solid #d6d6d6;
+  border-radius:10px;
+  margin-top:.35rem;
+  background:#fff;
+  font:inherit;
+}
+input:focus, select:focus, textarea:focus{
+  outline:none;
+  border-color:var(--amber-glow);
+  box-shadow:0 0 0 3px rgba(230,167,86,.25);
 }
 
 /* ====== Footer ====== */
