@@ -66,3 +66,9 @@ CREATE USER IF NOT EXISTS 'moffatbay'@'localhost' IDENTIFIED BY 'moffatbay';
 GRANT ALL PRIVILEGES ON moffatbay.* TO 'moffatbay'@'localhost';
 
 FLUSH PRIVILEGES;
+
+INSERT INTO room_types (name, description, nightly_rate, inventory_count, capacity, code) VALUES
+('Standard Queen', 'Cozy queen-size room with mountain views', 99.99, 100, 4, 'STD-QN'),
+('Deluxe King', 'Spacious king-size room with balcony and lake view', 149.99, 20, 2, 'DLX-KG'),
+('Family Suite', 'Two-bedroom suite with living area, great for families', 199.99, 10, 8, 'FAM-SU'),
+('Luxury Cabin', 'Private cabin with fireplace, kitchen, and waterfront view', 299.99, 6, 12, 'LUX-PH');
