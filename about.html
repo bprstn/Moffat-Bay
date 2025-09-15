@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us • Moffat Bay Lodge</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet"/>
+  
+  <!-- External stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ====== Header / Nav ====== -->
+  <header role="banner">
+    <div class="container nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="images/bear_logo.png" alt="Moffat Bay bear logo" width="32" height="32"/>
+        <span>Moffat Bay Lodge</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#accommodations">Accommodations</a></li>
+          <li><a href="index.html#dining">Dining</a></li>
+          <li><a href="index.html#activities">Activities</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
+          <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <section class="hero about-hero" role="region" aria-label="About hero">
+  <div class="container hero-inner">
+    <h1>About Moffat Bay Lodge</h1>
+    <p class="sub">A retreat where nature, comfort, and hospitality meet.</p>
+  </div>
+</section>
+
+
+  <!-- ====== Our Story ====== -->
+  <section id="our-story">
+    <div class="container grid">
+      <div class="col-6">
+        <h2>Our Story</h2>
+        <p>Moffat Bay Lodge began as a vision to create a peaceful haven along the lakeshore. With its roots in the surrounding forest and community, the lodge was built to offer guests a balance of natural beauty and refined comfort. Every stay is meant to feel like a return to simplicity, with the warmth of a modern lodge and the serenity of the outdoors.</p>
+      </div>
+      <div class="col-6 card">
+        <img src="images/map.png" alt="Moffat Bay Lodge map" style="width:100%; height:auto; object-fit:contain;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Mission Statement ====== -->
+  <section id="mission" style="text-align:center; padding:60px 20px; background:#e9efe9;">
+    <div class="container">
+      <h2>Our Mission</h2>
+      <p style="max-width:800px; margin:auto; font-size:1.2rem;">
+        To provide every guest with a sanctuary where nature’s beauty meets thoughtful hospitality. 
+        We believe in sustainability, community, and creating moments that last long after your stay.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== Contact Form ====== -->
+  <section id="contact-form">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p class="muted">We’d love to hear from you. Please fill out the form below and our team will get back to you soon.</p>
+      <form action="submit_contact.jsp" method="post" style="margin-top:20px; display:grid; gap:14px; max-width:600px;">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ====== Footer ====== -->
+  <footer>
+    <div class="container grid">
+      <div class="col-6">
+        <h3 style="color:#f0e7d9">Contact</h3>
+        <p>4070 Old Moffat Bay Rd, Hilton Beach, ON P0R 1G0, Canada</p>
+        <p><a href="mailto:stay@moffatbay.com" style="color:var(--amber-glow)">stay@moffatbay.com</a> • (555) 555-0123</p>
+      </div>
+      <div class="col-6" style="text-align:right">
+        <a class="btn btn-ghost" href="signin.jsp">Sign In</a>
+        <a class="btn btn-primary" href="registration.jsp">Sign Up</a>
+        <a class="btn btn-primary" href="book.jsp">Book Now</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
