@@ -19,6 +19,7 @@ public class ContactUsBean implements Serializable {
     private boolean hasError;
     private String dbStatus = "not saved";
     private String errorMessage;
+    private Long newId;
 
     // --- db config  ---
     private String jdbcUrl  = "jdbc:mysql://localhost:3306/moffatbay?useSSL=false&serverTimezone=UTC";
