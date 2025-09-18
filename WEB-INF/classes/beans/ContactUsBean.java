@@ -7,7 +7,7 @@ import java.sql.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ContactMessageBean implements Serializable {
+public class ContactUsBean implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // --- inputs ---
@@ -17,16 +17,15 @@ public class ContactMessageBean implements Serializable {
 
     // --- state/outputs ---
     private boolean hasError;
-    private String errorMessage;
-    private Long newId;            // nullable
     private String dbStatus = "not saved";
+    private String errorMessage;
 
-    // --- db config (simple defaults; override via setters if needed) ---
+    // --- db config  ---
     private String jdbcUrl  = "jdbc:mysql://localhost:3306/moffatbay?useSSL=false&serverTimezone=UTC";
     private String jdbcUser = "moffatbay";
     private String jdbcPass = "moffatbay";
 
-    public ContactMessageBean() {}
+    public ContactUsBean() {}
 
     // getters/setters
     public String getName() { return name; }
@@ -102,7 +101,7 @@ public class ContactMessageBean implements Serializable {
         } catch (Exception ignore) {}
     }
 
-    // tiny HTML escaper for echoing in JSP
+    // tiny HTML escaper for use in JSP
     public static String esc(String s) {
         if (s == null) return "";
         return s.replace("&","&amp;").replace("<","&lt;").replace(">","&gt;")
