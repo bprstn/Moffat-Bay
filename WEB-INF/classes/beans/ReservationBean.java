@@ -97,4 +97,34 @@ public class ReservationBean {
         }
         return list;
     }
+    
+    /**
+     * Added 9/19/25
+     * Get data from customers, room_types, and reservation tables from a reservationID. 
+     * reservations : id, total_price, check_in, guests
+     * customers: email, first_name, last_name
+     * room_types: name, description
+     * @param reservationID
+     * @return rs
+     * @throws Exception
+     */
+    public List<Map<String,Object>> getReservationInfoFromID(long reservationID) throws Exception {
+        final String sql =
+        	"SELECT " + 
+        	" r.id, r.total_price, r.check_in, r.check_out, r.guests, " +
+        	" c.email, c.first_name, c.last_name, " +
+        	" s.name, s.description " +
+        	" FROM reservations AS r " +
+        	" Left join room_types s ON r.room_type_id = s.id " +
+        	" LEFT JOIN customers c ON c.id = r.customer_id " + 
+        	" WHERE r.id = ?";
+        
+        try (Connection conn = getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, reservationID);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rowsFromResultSet(rs);
+            }
+        }
+    }
 }
