@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Contact Us - Moffat Bay Lodge</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – Moffat Bay Lodge</title>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- ====== Header / Nav ====== -->
+  <!-- ======= Header / Nav ======= -->
   <header role="banner">
     <div class="container nav">
       <a class="brand" href="index.html">
@@ -30,52 +29,43 @@
     </div>
   </header>
 
-  <!-- ====== Hero ====== -->
-  <section class="hero about-hero">
-    <div class="container hero-inner">
+  <!-- ======= Contact Us Section ======= -->
+  <main>
+    <section class="contact container">
       <h1>Contact Us</h1>
-      <p class="sub">We’d love to hear from you! Reach out for questions, reservations, or special requests.</p>
-    </div>
-  </section>
+      <p>We’d love to hear from you. Please fill out the form below and our team will get back to you soon.</p>
 
-  <!-- ====== Contact Form ====== -->
-  <section>
-    <div class="container">
-      <div class="grid">
-        <div class="col-6">
-          <h2>Send Us a Message</h2>
-          <form>
-            <label for="name">Full Name *</label>
-            <input type="text" id="name" name="name" required>
+      <form>
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
 
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" required>
+      <!-- Success Message -->
+      <p id="successMessage" style="color: green; font-weight: bold; display: none; margin-top: 10px;">
+        ✅ Your message has been sent successfully!
+      </p>
+    </section>
+  </main>
 
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject">
+  <script>
+    // Grab the form and success message
+    const form = document.querySelector("form");
+    const successMessage = document.getElementById("successMessage");
 
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
+    // Intercept the form submit
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // stop page reload
 
-            <button type="submit" class="btn btn-primary" style="margin-top:10px">Submit</button>
-          </form>
-        </div>
-        <div class="col-6">
-          <h2>Visit or Call</h2>
-          <p>4070 Old Moffat Bay Rd<br>Hilton Beach, ON P0R 1G0, Canada</p>
-          <p><a href="mailto:stay@moffatbay.com">stay@moffatbay.com</a><br>(555) 555-0123</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      // Show success message
+      successMessage.style.display = "block";
 
-  <!-- ====== Footer ====== -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Moffat Bay Lodge. All Rights Reserved.</p>
-    </div>
-  </footer>
-
+      // Optional: clear the form
+      form.reset();
+    });
+  </script>
 </body>
 </html>
+
 
