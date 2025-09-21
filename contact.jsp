@@ -1,93 +1,88 @@
-<%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  // --- Simple server-side handling ---
+  request.setCharacterEncoding("UTF-8");
+
+  boolean isPost = "POST".equalsIgnoreCase(request.getMethod());
+  String name = isPost ? request.getParameter("name") : "";
+  String email = isPost ? request.getParameter("email") : "";
+  String message = isPost ? request.getParameter("message") : "";
+
+  String errName = null, errEmail = null, errMessage = null;
+  boolean showSuccess = false;
+
+  if (isPost) {
+    if (name == null || name.trim().isEmpty())    errName = "Name is required.";
+    if (email == null || email.trim().isEmpty())  errEmail = "Email is required.";
+    else if (!email.matches("^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")) errEmail = "Enter a valid email.";
+    if (message == null || message.trim().isEmpty()) errMessage = "Message is required.";
+
+    if (errName == null && errEmail == null && errMessage == null) {
+      showSuccess = true;
+
+      // (Optional) "backend" evidence in server logs
+      System.out.println("[Contact] name=" + name + ", email=" + email + ", msg=" + message);
+      // If you later want DB insert, this is where it would go.
+    }
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Moffat Bay Lodge – Contact Us</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us – Moffat Bay Lodge</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Light inline helpers in case style.css doesn't have them */
+    .container{max-width:960px;margin:0 auto;padding:2rem 1rem;}
+    .h1{font-size:2rem;margin:0 0 1rem;}
+    .field{margin:0 0 1rem;}
+    .input, .textarea{width:100%;padding:0.9rem;border:1px solid #ddd;border-radius:10px;font-size:1rem;}
+    .error{color:#b00020;font-size:0.9rem;margin-top:0.35rem;}
+    .btn{display:block;width:100%;padding:1rem;border:none;border-radius:999px;font-weight:600;cursor:pointer;background:#E39A3B;color:#173728;}
+    .banner{padding:1rem 1.2rem;border-radius:12px;margin:1rem 0;font-weight:600}
+    .banner-success{background:#e9f7ef;color:#155724;border:1px solid #c7e5d3;}
+  </style>
 </head>
 <body>
+  <header class="container" style="padding-top:1rem;">
+    <nav>
+      <ul style="display:flex;gap:1rem;list-style:none;padding:0;margin:0 0 1.5rem 0;">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="reservations.jsp">My Reservations</a></li>
+        <li><a href="registration.jsp">Register</a></li>
+        <li><a href="contact.jsp" style="font-weight:700;">Contact</a></li>
+      </ul>
+    </nav>
+    <h1 class="h1">Contact Us</h1>
+    <p>We’d love to hear from you. Please fill out the form below and our team will get back to you soon.</p>
+  </header>
 
-<header role="banner">
-    <div class="container nav">
-        <a class="brand" href="index.html">
-            <img src="images/bear_logo.png" alt="Moffat Bay bear logo">
-            <span>Moffat Bay Lodge</span>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="book.jsp">Reservations</a></li>
-                <li><a href="contact.jsp">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+  <main class="container">
+    <% if (showSuccess) { %>
+      <div class="banner banner-success">Thank you! Your message has been sent.</div>
+    <% } %>
 
-<section class="hero about-hero">
-    <div class="hero-inner">
-        <h1>Contact Us</h1>
-        <p class="sub">We’d love to hear from you!</p>
-    </div>
-</section>
+    <form method="post" action="contact.jsp" novalidate>
+      <div class="field">
+        <input class="input" type="text" name="name" placeholder="Your Name" value="<%= (name==null?"":name) %>"/>
+        <% if (errName != null) { %><div class="error"><%= errName %></div><% } %>
+      </div>
 
-<section class="container" style="max-width:600px; padding:40px 0">
-    <form method="post" action="contact.jsp">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
+      <div class="field">
+        <input class="input" type="email" name="email" placeholder="Your Email" value="<%= (email==null?"":email) %>"/>
+        <% if (errEmail != null) { %><div class="error"><%= errEmail %></div><% } %>
+      </div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+      <div class="field">
+        <textarea class="textarea" name="message" rows="7" placeholder="Your Message"><%= (message==null?"":message) %></textarea>
+        <% if (errMessage != null) { %><div class="error"><%= errMessage %></div><% } %>
+      </div>
 
-        <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button class="btn btn-primary" type="submit">Send Message</button>
+      <button class="btn" type="submit">Send Message</button>
     </form>
-
-    <%
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String subject = request.getParameter("subject");
-        String message = request.getParameter("message");
-
-        if (name != null && email != null && subject != null && message != null) {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection conn = DriverManager.getConnection(
-                        "jdbc:mysql://localhost:3306/moffatbay",
-                        "moffatbay", "moffatbay"
-                );
-                String sql = "INSERT INTO contact_messages (name, email, subject, message) VALUES (?,?,?,?)";
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1, name);
-                ps.setString(2, email);
-                ps.setString(3, subject);
-                ps.setString(4, message);
-                ps.executeUpdate();
-                conn.close();
-    %>
-                <p style="color:green; font-weight:bold; margin-top:20px">✅ Thank you! Your message has been sent.</p>
-    <%
-            } catch (Exception e) {
-    %>
-                <p style="color:red; font-weight:bold; margin-top:20px">❌ Error saving your message.</p>
-                <pre><%= e.getMessage() %></pre>
-    <%
-            }
-        }
-    %>
-</section>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Moffat Bay Lodge</p>
-    </div>
-</footer>
-
+  </main>
 </body>
 </html>
