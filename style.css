@@ -65,6 +65,11 @@ nav a:hover, nav a:focus{opacity:.85; text-decoration:underline}
 .btn-ghost{border:1px solid var(--amber-glow); color:var(--amber-glow); background:transparent}
 .auth{margin-left:6px}
 
+nav a.active {
+  border-bottom: 2px solid var(--amber-glow);
+  padding-bottom: 4px; /* keeps spacing even */
+}
+
 /* ====== Hero (shared base) ====== */
 .hero {
   position: relative;
@@ -154,6 +159,107 @@ input:focus, select:focus, textarea:focus{
   border-color:var(--amber-glow);
   box-shadow:0 0 0 3px rgba(230,167,86,.25);
 }
+
+/* ====== Activities Page ====== */
+
+/* Hero image just for activities page */
+.activities-hero,
+.hero-activities { /* alias, in case your HTML uses either */
+  background:#000 url("images/activities-hero.png") center/cover no-repeat;
+}
+
+/* Slightly tighter hero padding so the floating card sits nicely */
+.hero-inner--flush{ padding: clamp(30px, 5vw, 60px) 0; }
+
+/* Floating intro card on top of the hero */
+.hero-card{
+  background:var(--cream-birch);
+  color:var(--charcoal-bark);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding: clamp(16px, 3vw, 28px);
+  max-width:920px;
+  margin:0 auto;
+  text-align:left;
+}
+.hero-card .eyebrow{
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:.8rem;
+  color:var(--slate-river);
+  margin:0 0 .25rem;
+}
+.hero-actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+
+/* Section spacing + small overline helper */
+.section-pad{ padding:48px 0; }
+.overline{
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.75rem;
+  color:var(--slate-river);
+}
+
+/* Activities hero text fix (dark text on light card) */
+.activities-hero .hero-inner h1,
+.activities-hero .hero-inner p,
+.hero-activities .hero-inner h1,
+.hero-activities .hero-inner p {
+  color: var(--cream-birch); /* readable on the cream card */
+  text-shadow: none;
+}
+
+/* Activity cards (3-up) */
+.activity-card img{
+  height:240px;               /* override default card img height for this layout */
+  object-fit:cover;
+}
+
+/* ========== NEW: center the 4th activity under the 2nd ========== */
+.activities-grid{
+  display:grid;
+  gap:22px;
+  grid-template-columns:repeat(3, 1fr);
+}
+
+/* place the 4th card in the middle column on desktop */
+.activities-grid .card:nth-child(4){
+  grid-column:2;
+}
+
+/* responsive: two columns on tablets; let natural flow stack */
+@media (max-width: 960px){
+  .activities-grid{ grid-template-columns:repeat(2, 1fr); }
+  .activities-grid .card:nth-child(4){ grid-column:auto; }
+}
+
+/* responsive: one column on mobile */
+@media (max-width: 640px){
+  .activities-grid{ grid-template-columns:1fr; }
+}
+
+.chip{
+  display:inline-block;
+  padding:.28rem .55rem;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:var(--deep-spruce);
+  background:#e9efe9;
+  border:1px solid #d3e1d8;
+  margin-bottom:.45rem;
+}
+.meta{ font-size:.9rem; margin:.35rem 0 .7rem; color:#5a5a5a; }
+
+/* Responsive tweaks */
+@media (max-width: 960px){
+  .activity-card img{ height:200px; }
+}
+@media (max-width: 640px){
+  .hero-actions{ justify-content:flex-start; }
+}
+
 
 /* ====== Footer ====== */
 footer{

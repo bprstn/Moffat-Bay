@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Activities • Moffat Bay Lodge</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== Header / Nav ====== -->
+  <header role="banner">
+    <div class="container nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="images/bear_logo.png" alt="Moffat Bay bear logo">
+        <span>Moffat Bay Lodge</span>
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#accommodations">Accommodations</a></li>
+          <li><a href="index.html#dining">Dining</a></li>
+          <li><a href="activities.html" class="active">Activities</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
+          <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Hero with floating card ====== -->
+<section class="hero activities-hero" role="region" aria-label="Activities hero image">
+  <div class="container hero-inner">
+    <h1>Activities for Every Season</h1>
+    <p class="sub">Whether you’re here to paddle glassy waters at sunrise, follow spruce-lined trails, or unwind by a crackling fire, our curated activities bring the forest to life.</p>
+    <a class="btn btn-primary" href="#">Explore Activities</a>
+    <a class="btn btn-ghost" href="#">FAQs</a>
+  </div>
+</section>
+
+
+
+<!-- ====== Featured Activities (3-up cards) ====== -->
+<section id="featured" class="section-pad">
+  <div class="container">
+    <h2 class="section-title">Featured Activities</h2>
+    <p class="muted overline">Outdoors, Wellness & Family Experiences</p>
+
+    <div class="activities-grid" style="margin-top:18px">
+      <!-- Infinity Pool -->
+      <article class="card activity-card">
+        <img src="images/pool.png" alt="Infinity pool with mountain and lake views">
+        <div class="pad">
+          <span class="chip">On the Water</span>
+          <h3>Infinity Pool Escape</h3>
+          <p>Glide across mirror-still waters—or relax in a lounger with panoramic views. Towel service provided.</p>
+          <div class="meta muted">Daily • 8:00 AM–8:00 PM</div>
+          <a class="btn btn-primary" href="#pool-details">See Availability</a>
+        </div>
+      </article>
+
+      <!-- Guided Hike -->
+      <article class="card activity-card">
+        <img src="images/hiking.png" alt="Guided hike on forest trails overlooking the lake">
+        <div class="pad">
+          <span class="chip">Trails</span>
+          <h3>Guided Forest Hike</h3>
+          <p>Follow spruce-scented paths to panoramic overlooks. Learn about local flora, fauna, and stewardship along the way.</p>
+          <div class="meta muted">Mon–Sat • 9:30 AM • Moderate</div>
+          <a class="btn btn-primary" href="#hiking-details">Book Hike</a>
+        </div>
+      </article>
+
+      <!-- Greenhouse Workshop -->
+      <article class="card activity-card">
+        <img src="images/greenhouse.png" alt="Greenhouse workshop with fresh herbs and greens">
+        <div class="pad">
+          <span class="chip">Wellness</span>
+          <h3>Greenhouse Workshop</h3>
+          <p>Hands-on session inside our greenhouse—harvest herbs and craft bundles used by our culinary team.</p>
+          <div class="meta muted">45–60 mins • Limited Seats</div>
+          <a class="btn btn-primary" href="#greenhouse-details">Sign Up</a>
+        </div>
+      </article>
+
+      <!-- Bonfires -->
+      <article class="card activity-card">
+        <img src="images/bonfire.png" alt="Cozy evening bonfire with seating and lantern light">
+        <div class="pad">
+          <span class="chip">Evening</span>
+          <h3>Bonfires Under the Pines</h3>
+          <p>Unwind by a crackling fire at dusk—s’mores kits and warm beverages available; occasional live acoustic sets.</p>
+          <div class="meta muted">Most Evenings at Dusk • Weather Dependent</div>
+          <a class="btn btn-primary" href="#bonfire-details">Reserve Spot</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ====== Simple detail anchors (copy blocks) ====== -->
+  <section id="pool-details"><div class="container"><h2>Pool Hours & Amenities</h2><p class="muted">Daily 8am–8pm. Towels provided. Pool bar on summer weekends.</p></div></section>
+  <section id="hiking-details"><div class="container"><h2>Guided Hiking Options</h2><p class="muted">Beginner to moderate routes. Private guides by request.</p></div></section>
+  <section id="greenhouse-details"><div class="container"><h2>Greenhouse Workshops</h2><p class="muted">Small groups; reserve at the front desk or online.</p></div></section>
+  <section id="bonfire-details"><div class="container"><h2>Bonfire Schedule</h2><p class="muted">Evenings at dusk, weather permitting. S’mores kits available.</p></div></section>
+
+  <!-- ====== Footer ====== -->
+  <footer>
+    <div class="container grid">
+      <div class="col-6">
+        <h3 style="color:#f0e7d9">Contact</h3>
+        <p>4070 Old Moffat Bay Rd, Hilton Beach, ON P0R 1G0, Canada</p>
+        <p><a href="mailto:stay@moffatbay.com" style="color:var(--amber-glow)">stay@moffatbay.com</a> • (555) 555-0123</p>
+      </div>
+      <div class="col-6" style="text-align:right">
+        <a class="btn btn-ghost" href="signin.jsp">Sign In</a>
+        <a class="btn btn-primary" href="registration.jsp">Sign Up</a>
+        <a class="btn btn-primary" href="book.jsp">Book Now</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
