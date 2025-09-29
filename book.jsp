@@ -99,11 +99,11 @@
     </a>
     <nav>
       <ul>
-        <li><a href="index.html#about">About</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="index.html#accommodations">Accommodations</a></li>
         <li><a href="index.html#dining">Dining</a></li>
-        <li><a href="index.html#activities">Activities</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="activities.html">Activities</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><span class="tag">Signed in: <%= h(customerEmail) %></span></li>
         <li><a class="btn btn-ghost auth" href="reservations.jsp">My Reservations</a></li>
         <li><a class="btn btn-ghost auth" href="signout.jsp">Sign Out</a></li>
