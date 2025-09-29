@@ -39,11 +39,11 @@
 
       <nav>
         <ul>
-          <li><a href="index.html#about">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="index.html#accommodations">Accommodations</a></li>
           <li><a href="index.html#dining">Dining</a></li>
-          <li><a href="index.html#activities">Activities</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="activities.html">Activities</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <!-- Auth buttons -->
           <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
           <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
