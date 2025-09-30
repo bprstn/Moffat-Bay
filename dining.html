@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dining • Moffat Bay Lodge</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====== Header / Nav ====== -->
+  <header role="banner">
+    <div class="container nav" aria-label="Primary">
+      <a class="brand" href="index.html">
+        <img src="images/bear_logo.png" alt="Moffat Bay bear logo">
+        <span>Moffat Bay Lodge</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#accommodations">Accommodations</a></li>
+          <li><a href="dining.html" class="active">Dining</a></li>
+          <li><a href="activities.html">Activities</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
+          <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Dining Hero ====== -->
+  <section class="hero dining-hero hero--center" role="region" aria-label="Dining hero image">
+    <div class="container hero-inner">
+      <h1>Dining</h1>
+      <p class="sub">
+        Seasonal menus crafted to celebrate the mountains and forests around us.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#menus">View Menus</a>
+        <a class="btn btn-ghost" href="#story">Our Philosophy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Intro Copy (before images) ====== -->
+  <section id="story" class="section-pad">
+    <div class="container">
+      <div class="prose">
+        <h2>Fresh, Seasonal, Local</h2>
+        <p>
+          At Moffat Bay, dining blends nature with craftsmanship. Our chef crafts each dish with
+          locally sourced ingredients — from freshly caught fish and farm-raised meats to hand-picked
+          produce — making every plate a celebration of the region’s flavors. With menus that change
+          seasonally, every meal is fresh, authentic, and deeply connected to the land.
+        </p>
+        <h2>Greenhouse to Table</h2>
+        <p>
+          Our culinary team enhances this connection with herbs and greens grown in Moffat Bay’s
+          greenhouse. This dedication to freshness ensures dishes that are vibrant, nourishing, and
+          sustainable. Each meal balances rustic lodge warmth with refined technique, creating dining
+          experiences that are both comforting and unforgettable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Feature Images Row (2-up) ====== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="grid">
+        <figure class="card col-6">
+          <img src="images/herbs.png" alt="Warm lodge entry leading to the dining room">
+        </figure>
+        <figure class="card col-6">
+          <img src="images/forest.png" alt="Wild mushrooms from the surrounding forest">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Post-image Copy ====== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="prose narrow">
+        <h2>Dining Throughout the Day</h2>
+        <p>
+          From sunrise to evening, Moffat Bay offers dining for every moment of your stay. Begin the
+          day with a hearty breakfast buffet of pastries, fruit, and hot dishes. At midday, our casual
+          café provides light plates and lodge favorites. In the evening, fine dining transforms local
+          ingredients into elegant multi-course dinners, paired with curated wines and stunning views.
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!-- ====== Menus ====== -->
+<section id="menus" class="section-pad">
+  <div class="container">
+    <h2 class="section-title">Menus</h2>
+    <div class="grid" style="margin-top:18px">
+      <!-- Breakfast -->
+      <article class="card col-4">
+        <img src="images/breakfast.png" alt="Breakfast buffet with mountain view">
+        <div class="pad">
+          <h3>Breakfast</h3>
+          <p class="muted">Sunrise buffet and à la carte favorites—local fruit, artisan breads, and chef’s specials.</p>
+          <button class="btn btn-primary open-menu"
+                  data-image="images/breakfast-menu.png"
+                  data-title="Breakfast Menu">
+            View Menu
+          </button>
+        </div>
+      </article>
+
+      <!-- Midday / Café -->
+      <article class="card col-4">
+        <img src="images/cafe.png" alt="Midday café with espresso and sandwiches">
+        <div class="pad">
+          <h3>Midday Recharge</h3>
+          <p class="muted">Espresso bar, sandwiches, and light plates—perfect for adventures between meals.</p>
+          <button class="btn btn-primary open-menu"
+                  data-image="images/cafe-menu.png"
+                  data-title="Café Menu">
+            View Menu
+          </button>
+        </div>
+      </article>
+
+      <!-- Dinner -->
+      <article class="card col-4">
+        <img src="images/dinner.png" alt="Fine dining dinner setting">
+        <div class="pad">
+          <h3>Dinner</h3>
+          <p class="muted">Chef-led tasting menus and seasonal à la carte dishes—pair with our curated wines.</p>
+          <button class="btn btn-primary open-menu"
+                  data-image="images/dinner-menu.png"
+                  data-title="Dinner Menu">
+            View Menu
+          </button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Menu Modal (one per page) ====== -->
+<div id="menuModal" class="menu-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="menuModalTitle">
+  <div class="menu-modal__dialog">
+    <button class="menu-modal__close" aria-label="Close menu (Esc)">×</button>
+    <h2 id="menuModalTitle" class="menu-modal__title"></h2>
+    <img id="menuModalImg" src="" alt="Menu image" />
+  </div>
+</div>
+
+
+  <!-- ====== Footer ====== -->
+  <footer>
+    <div class="container grid">
+      <div class="col-6">
+        <h3 style="color:#f0e7d9">Contact</h3>
+        <p>4070 Old Moffat Bay Rd, Hilton Beach, ON P0R 1G0, Canada</p>
+        <p><a href="mailto:stay@moffatbay.com" style="color:var(--amber-glow)">stay@moffatbay.com</a> • (555) 555-0123</p>
+      </div>
+      <div class="col-6" style="text-align:right">
+        <a class="btn btn-ghost" href="signin.jsp">Sign In</a>
+        <a class="btn btn-primary" href="registration.jsp">Sign Up</a>
+        <a class="btn btn-primary" href="book.jsp">Book Now</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Optional: auto-highlight current nav based on URL -->
+  <script>
+    const here = location.pathname.split('/').pop();
+    document.querySelectorAll('nav a').forEach(a=>{
+      if(a.getAttribute('href') === here) a.classList.add('active');
+    });
+  </script>
+  
+  <script>
+  (function () {
+    const modal = document.getElementById('menuModal');
+    const img   = document.getElementById('menuModalImg');
+    const title = document.getElementById('menuModalTitle');
+    const closeBtn = modal.querySelector('.menu-modal__close');
+    let lastFocus = null;
+
+    function openModal(src, heading){
+      lastFocus = document.activeElement;
+      img.src = src;
+      title.textContent = heading || 'Menu';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden','false');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal(){
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden','true');
+      img.src = '';
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocus) lastFocus.focus();
+    }
+
+    function onKeydown(e){
+      if (e.key === 'Escape') closeModal();
+    }
+
+    // Open handlers
+    document.querySelectorAll('.open-menu').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const src = btn.getAttribute('data-image');
+        const heading = btn.getAttribute('data-title');
+        openModal(src, heading);
+      });
+    });
+
+    // Close handlers
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{
+      if (e.target === modal) closeModal(); // click backdrop to close
+    });
+  })();
+</script>
+
+</body>
+</html>
