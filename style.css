@@ -3,7 +3,7 @@
   --deep-spruce:#1E3D34;      /* primary header/nav */
   --amber-glow:#E6A756;       /* buttons / accents */
   --slate-river:#4A5C6A;      /* subtle accents */
-  --cream-birch:#FAF7F2;      /* page background */
+  --cream-birch:#FAF7F2;      /* page background (fixed: single #) */
   --charcoal-bark:#2C2C2C;    /* body text */
   --white:#ffffff;
   --maxw:1200px;
@@ -27,7 +27,6 @@ h1,h2,h3{
   margin:0 0 .5rem;
 }
 a{color:inherit;text-decoration:none}
-
 .container{max-width:var(--maxw);margin:auto;padding:0 20px}
 
 /* ====== Header / Nav ====== */
@@ -65,54 +64,174 @@ nav a:hover, nav a:focus{opacity:.85; text-decoration:underline}
 .btn-ghost{border:1px solid var(--amber-glow); color:var(--amber-glow); background:transparent}
 .auth{margin-left:6px}
 
-nav a.active {
-  border-bottom: 2px solid var(--amber-glow);
-  padding-bottom: 4px; /* keeps spacing even */
+/* Active nav underline */
+nav a.active{
+  border-bottom:2px solid var(--amber-glow);
+  padding-bottom:4px;
 }
 
 /* ====== Hero (shared base) ====== */
-.hero {
-  position: relative;
-  isolation: isolate;
-  color: var(--cream-birch);
+.hero{
+  position:relative; isolation:isolate;
+  color:var(--cream-birch);
+  background:#000; /* set by page-specific rules below */
 }
-.hero::after {
-  content: "";
-  position: absolute;
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
+  z-index:0;
+}
+.hero-inner{
+  position:relative; z-index:1;
+  padding:clamp(60px, 8vw, 120px) 0;
+  text-align:center;
+}
+.hero h1{
+  color:var(--cream-birch);
+  font-size:clamp(34px, 6vw, 60px);
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.hero .sub{
+  margin:.5rem auto 1.5rem; max-width:800px;
+  font-size:1.05rem; opacity:.95;
+}
+
+/* Default hero text: light on all heroes EXCEPT the banner pages */
+.hero:not(.dining-hero):not(.activities-hero) .hero-inner h1,
+.hero:not(.dining-hero):not(.activities-hero) .hero-inner p{
+  color:var(--cream-birch);
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+
+/* ====== Page-specific hero images ====== */
+/* Index hero image (logo landing) */
+.hero{
+  background:#000 url("images/hero.png") center/80% no-repeat;
+}
+
+/* About page hero image */
+.about-hero{
+  background:#000 url("images/about-hero.png") center/50% no-repeat;
+  background-color:#000;
+}
+
+/* Activities page hero image (banner style) */
+.activities-hero,
+.hero-activities{ /* alias */
+  background:#000 url("images/activities-hero.png") center/cover no-repeat;
+}
+
+/* ====== Banner styles (Activities + Dining) ====== */
+.activities-hero .hero-inner,
+.dining-hero .hero-inner{
+  text-align:center;
+  padding:clamp(80px, 12vw, 160px) 0;
+}
+.activities-hero .hero-inner h1,
+.dining-hero .hero-inner h1{
+  color:#fff;
+  font-family:"Playfair Display", Georgia, serif;
+  font-size:clamp(42px, 8vw, 72px);
+  line-height:1.1;
+  margin:0 0 .5rem;
+  text-shadow:0 2px 18px rgba(0,0,0,.35);
+}
+.activities-hero .hero-inner p,
+.dining-hero .hero-inner .sub{
+  color:rgba(255,255,255,.92);
+  max-width:900px; margin:0 auto 1.5rem;
+  font-size:clamp(1rem, 1.2vw, 1.25rem);
+  text-shadow:0 1px 12px rgba(0,0,0,.35);
+}
+
+/* Dining page hero image + specific overlay */
+.dining-hero{
+  background:#000 url("images/dining-hero.png") center/cover no-repeat;
+}
+.dining-hero::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.45));
+  z-index:0;
+}
+
+/* ====== Menu Lightbox ====== */
+.menu-modal{
+  position: fixed;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.45));
-  z-index: 0;
+  display: none;                 /* hidden by default */
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.6);
+  z-index: 1000;
+  padding: 24px;
 }
-.hero-inner {
+.menu-modal.is-open{ display:flex; }
+
+.menu-modal__dialog{
   position: relative;
-  z-index: 1;
-  padding: clamp(60px, 8vw, 120px) 0;
-  text-align: center;
-}
-.hero h1 {
-  color: var(--cream-birch);
-  font-size: clamp(34px, 6vw, 60px);
-  text-shadow: 0 2px 18px rgba(0,0,0,.35);
-}
-.hero .sub {
-  margin: .5rem auto 1.5rem;
-  max-width: 800px;
-  font-size: 1.05rem;
-  opacity: .95;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: min(1100px, 96vw);
+  max-height: 92vh;
+  width: 100%;
+  padding: 18px 18px 12px;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* ====== Index hero image ====== */
-.hero {
-  background: #000 url("images/hero.png") center/80% no-repeat;
+.menu-modal__title{
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--deep-spruce);
+  font-size: clamp(1.1rem, 1.2rem + .5vw, 1.6rem);
 }
 
-/* ====== About page hero image ====== */
-.about-hero {
-  background: #000 url("images/about-hero.png") center/50% no-repeat;
-  background-color: #000; /* fill behind edges if needed */
+.menu-modal__close{
+  position:absolute; top:8px; right:8px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid #e7e7e7;
+  background: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+.menu-modal__close:hover{ background:#fafafa; }
+
+#menuModalImg{
+  width: 100%;
+  height: auto;
+  object-fit: contain;           /* keep full menu visible */
+  border-radius: 10px;
+  background: #fff;
 }
 
-/* ====== Sections ====== */
+/* Constrain the dialog to the viewport and allow scrolling */
+.menu-modal__dialog{
+  max-height: 92vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Make the image fit and shrink inside the dialog */
+#menuModalImg{
+  display: block;
+  width: 100%;
+  max-height: calc(92vh - 84px); /* accounts for title + padding + close btn */
+  object-fit: contain;
+}
+
+/* Optional: tighter padding on small screens so more room for image */
+@media (max-width: 640px){
+  .menu-modal__dialog{ padding: 12px 12px 10px; }
+  #menuModalImg{ max-height: calc(92vh - 64px); }
+}
+
+/* ====== Sections / Cards ====== */
 section{padding:60px 0}
 .grid{
   display:grid; gap:22px;
@@ -124,11 +243,10 @@ section{padding:60px 0}
 .card img{width:100%; height:300px; object-fit:cover; display:block}
 .card .pad{padding:18px}
 
-/* 3-up grid / column utilities */
-.col-4{grid-column: span 4}
-.col-6{grid-column: span 6}
-/* Full-width column for forms/blocks */
-.col-12{grid-column: span 12}
+/* Column utilities */
+.col-4{grid-column:span 4}
+.col-6{grid-column:span 6}
+.col-12{grid-column:span 12}
 
 .muted{color:#4b4b4b}
 .tag{
@@ -137,145 +255,95 @@ section{padding:60px 0}
   border:1px solid #d3e1d8;
 }
 
+/* ====== Typography helpers (Dining text, etc.) ====== */
+.prose{
+  max-width:900px; margin:0 auto;
+  font-size:1.06rem; line-height:1.8; color:var(--charcoal-bark);
+}
+.prose.narrow{ max-width:820px; }
+.prose .lead{
+  font-size:clamp(1.05rem, 1.2rem + .4vw, 1.3rem);
+  color:#2a2a2a;
+}
+.prose p + p{ margin-top:.9rem; }
+section + section .prose{ margin-top:-6px; }
+
 /* ====== Forms ====== */
 label{display:block; font-weight:600}
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"],
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"],
 select, textarea{
-  display:block;          /* ensures width applies */
-  width:100%;
-  max-width:100%;         /* avoid shrink */
-  padding:.75rem;
-  border:1px solid #d6d6d6;
-  border-radius:10px;
-  margin-top:.35rem;
-  background:#fff;
-  font:inherit;
+  display:block; width:100%; max-width:100%;
+  padding:.75rem; border:1px solid #d6d6d6; border-radius:10px;
+  margin-top:.35rem; background:#fff; font:inherit;
 }
 input:focus, select:focus, textarea:focus{
-  outline:none;
-  border-color:var(--amber-glow);
+  outline:none; border-color:var(--amber-glow);
   box-shadow:0 0 0 3px rgba(230,167,86,.25);
 }
 
-/* ====== Activities Page ====== */
+/* ====== Activities Page Cards / Layout ====== */
+.hero-inner--flush{ padding:clamp(30px, 5vw, 60px) 0; }
 
-/* Hero image just for activities page */
-.activities-hero,
-.hero-activities { /* alias, in case your HTML uses either */
-  background:#000 url("images/activities-hero.png") center/cover no-repeat;
-}
-
-/* Slightly tighter hero padding so the floating card sits nicely */
-.hero-inner--flush{ padding: clamp(30px, 5vw, 60px) 0; }
-
-/* Floating intro card on top of the hero */
 .hero-card{
   background:var(--cream-birch);
   color:var(--charcoal-bark);
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  padding: clamp(16px, 3vw, 28px);
+  padding:clamp(16px, 3vw, 28px);
   max-width:920px;
   margin:0 auto;
   text-align:left;
 }
 .hero-card .eyebrow{
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:.8rem;
-  color:var(--slate-river);
-  margin:0 0 .25rem;
+  text-transform:uppercase; letter-spacing:.12em; font-size:.8rem;
+  color:var(--slate-river); margin:0 0 .25rem;
 }
-.hero-actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+.hero-actions{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; justify-content:center; }
 
-/* Section spacing + small overline helper */
 .section-pad{ padding:48px 0; }
 .overline{
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  font-size:.75rem;
-  color:var(--slate-river);
+  text-transform:uppercase; letter-spacing:.14em; font-size:.75rem; color:var(--slate-river);
 }
 
-/* Activities hero text fix (dark text on light card) */
-.activities-hero .hero-inner h1,
-.activities-hero .hero-inner p,
-.hero-activities .hero-inner h1,
-.hero-activities .hero-inner p {
-  color: var(--cream-birch); /* readable on the cream card */
-  text-shadow: none;
-}
-
-/* Activity cards (3-up) */
 .activity-card img{
-  height:240px;               /* override default card img height for this layout */
-  object-fit:cover;
+  height:240px; object-fit:cover;
 }
 
-/* ========== NEW: center the 4th activity under the 2nd ========== */
+/* 3-up activities grid with 4th card centered under the 2nd */
 .activities-grid{
-  display:grid;
-  gap:22px;
+  display:grid; gap:22px;
   grid-template-columns:repeat(3, 1fr);
 }
-
-/* place the 4th card in the middle column on desktop */
-.activities-grid .card:nth-child(4){
-  grid-column:2;
-}
-
-/* responsive: two columns on tablets; let natural flow stack */
-@media (max-width: 960px){
-  .activities-grid{ grid-template-columns:repeat(2, 1fr); }
-  .activities-grid .card:nth-child(4){ grid-column:auto; }
-}
-
-/* responsive: one column on mobile */
-@media (max-width: 640px){
-  .activities-grid{ grid-template-columns:1fr; }
-}
+.activities-grid .card:nth-child(4){ grid-column:2; }
 
 .chip{
-  display:inline-block;
-  padding:.28rem .55rem;
-  border-radius:999px;
-  font-size:.78rem;
-  font-weight:700;
-  letter-spacing:.04em;
-  color:var(--deep-spruce);
-  background:#e9efe9;
-  border:1px solid #d3e1d8;
+  display:inline-block; padding:.28rem .55rem; border-radius:999px;
+  font-size:.78rem; font-weight:700; letter-spacing:.04em;
+  color:var(--deep-spruce); background:#e9efe9; border:1px solid #d3e1d8;
   margin-bottom:.45rem;
 }
 .meta{ font-size:.9rem; margin:.35rem 0 .7rem; color:#5a5a5a; }
 
-/* Responsive tweaks */
-@media (max-width: 960px){
-  .activity-card img{ height:200px; }
-}
-@media (max-width: 640px){
-  .hero-actions{ justify-content:flex-start; }
-}
-
-
 /* ====== Footer ====== */
 footer{
-  background:var(--deep-spruce); color:#e9efe9; padding:30px 0; margin-top:40px
+  background:var(--deep-spruce); color:#e9efe9; padding:30px 0; margin-top:40px;
 }
 
 /* ====== Responsive ====== */
 @media (max-width: 960px){
   nav ul{gap:18px}
-  .col-4{grid-column: span 6}
-  .col-6{grid-column: span 12}
+  .col-4{grid-column:span 6}
+  .col-6{grid-column:span 12}
   .card img{height:200px}
+  .activity-card img{height:200px}
+  .activities-grid{ grid-template-columns:repeat(2, 1fr); }
+  .activities-grid .card:nth-child(4){ grid-column:auto; }
 }
 @media (max-width: 640px){
   .nav{flex-wrap:wrap; gap:12px; height:auto; padding:10px 0}
   nav ul{flex-wrap:wrap; gap:14px}
   .hero .sub{padding:0 10px}
-  .col-4{grid-column: span 12}
+  .col-4{grid-column:span 12}
+  .activities-grid{ grid-template-columns:1fr; }
+  .hero-actions{ justify-content:flex-start; }
 }
