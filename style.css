@@ -109,6 +109,9 @@ nav a.active{
   background:#000 url("images/hero.png") center/80% no-repeat;
 }
 
+/* Amenities page hero image */
+.amenities-hero{ background:#000 url("images/amenities-hero.png") center/cover no-repeat; }
+
 /* About page hero image */
 .about-hero{
   background:#000 url("images/about-hero.png") center/50% no-repeat;

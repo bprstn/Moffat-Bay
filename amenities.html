@@ -13,7 +13,7 @@
 </head>
 <body>
 
-  <!-- ====== Header (includes nav) ====== -->
+  <!-- ====== Header / Nav ====== -->
   <header role="banner">
     <div class="container nav" aria-label="Primary">
       <a class="brand" href="index.html">
@@ -23,27 +23,35 @@
       <nav>
         <ul>
           <li><a href="about.html">About</a></li>
+          <li><a href="amenities.html" class="active">Amenities</a></li>
           <li><a href="dining.html">Dining</a></li>
           <li><a href="activities.html">Activities</a></li>
-          <li><a class="active" href="amenities.html">Amenities</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a class="btn btn-ghost auth" href="signin.jsp">Sign In</a></li>
+          <li><a class="btn btn-primary auth" href="registration.jsp">Sign Up</a></li>
         </ul>
       </nav>
-      <div class="auth-buttons">
-        <a class="btn btn-ghost auth" href="signin.jsp">Sign In</a>
-        <a class="btn btn-primary auth" href="registration.jsp">Sign Up</a>
-      </div>
     </div>
   </header>
 
+  <!-- ====== Amenities Hero ====== -->
+  <section class="hero amenities-hero" role="region" aria-label="Amenities hero image">
+    <div class="container hero-inner">
+      <h1>Amenities</h1>
+      <p class="sub">Thoughtful comforts for a calm, Northwest stay.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#amenities-list">Explore Amenities</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ====== Content ====== -->
-  <main>
+  <main id="amenities-list">
     <section class="section-pad">
       <div class="container">
-        <h1 class="section-title">Amenities</h1>
-        <p class="muted overline">Essentials for a calm, Northwest stay</p>
+        <p class="muted overline">Relax • Refresh • Unwind</p>
 
-        <div class="activities-grid">
+        <div class="activities-grid" style="margin-top:18px">
           <article class="card">
             <img src="images/amenity-fireplace.png" alt="Fireplace Lounge">
             <div class="pad">
@@ -90,5 +98,12 @@
     </div>
   </footer>
 
+  <!-- Optional: auto-highlight current nav based on URL -->
+  <script>
+    const here = location.pathname.split('/').pop();
+    document.querySelectorAll('nav a').forEach(a=>{
+      if(a.getAttribute('href') === here) a.classList.add('active');
+    });
+  </script>
 </body>
 </html>
